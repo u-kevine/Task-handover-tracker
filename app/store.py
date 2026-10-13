@@ -19,8 +19,8 @@ class TaskStore:
         self._tasks[task.id] = task
         self._next_id += 1
         return task
-        
-     def list(self) -> list[Task]:
+
+    def list(self) -> list[Task]:
         return list(self._tasks.values())
 
     def clear(self) -> None:
