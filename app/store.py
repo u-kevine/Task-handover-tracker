@@ -23,6 +23,12 @@ class TaskStore:
     def list(self) -> list[Task]:
         return list(self._tasks.values())
 
+    def complete(self, task_id: int) -> Task | None:
+        task = self._tasks.get(task_id)
+        if task is not None:
+            task.completed = True
+        return task
+
     def clear(self) -> None:
         """Used by tests to reset state between runs."""
         self._tasks.clear()
