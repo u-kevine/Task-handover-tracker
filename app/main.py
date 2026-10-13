@@ -12,3 +12,9 @@ store = TaskStore()
 def create_task(data: TaskCreate) -> Task:
     """US1: create a task. Invalid input is rejected with 422 automatically."""
     return store.create(data)
+
+
+@app.get("/tasks", response_model=list[Task])
+def list_tasks() -> list[Task]:
+    """US2: list all tasks."""
+    return store.list()

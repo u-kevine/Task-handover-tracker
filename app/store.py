@@ -20,6 +20,9 @@ class TaskStore:
         self._next_id += 1
         return task
 
+    def list(self) -> list[Task]:
+        return list(self._tasks.values())
+
     def clear(self) -> None:
         """Used by tests to reset state between runs."""
         self._tasks.clear()
