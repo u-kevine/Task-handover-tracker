@@ -1,4 +1,3 @@
-"""A simple in-memory store."""
 from datetime import datetime, timezone
 
 from app.models import Task, TaskCreate
@@ -14,6 +13,7 @@ class TaskStore:
             id=self._next_id,
             title=data.title,
             description=data.description,
+            priority=data.priority,
             created_at=datetime.now(timezone.utc),
         )
         self._tasks[task.id] = task
