@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 
-from app.models import Task, TaskCreate
+from app.models import Priority, Task, TaskCreate
 
 
 class TaskStore:
@@ -20,8 +20,15 @@ class TaskStore:
         self._next_id += 1
         return task
 
-    def list(self) -> list[Task]:
-        return list(self._tasks.values())
+    def list(
+        self, completed: bool | None = None, priority: Priority | None = None
+    ) -> list[Task]:
+        tasks = list(self._tasks.values())
+        if completed is not None:
+            tasks = [t for t in tasks if t.completed == completed]
+        if priority is not None:
+            tasks = [t for t in tasks if t.priority == priority]
+        return tasks
 
     def complete(self, task_id: int) -> Task | None:
         task = self._tasks.get(task_id)
