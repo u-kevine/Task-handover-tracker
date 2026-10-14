@@ -1,5 +1,3 @@
-pytest"""Sprint 2 - US4: set priority on a task."""
-
 def test_priority_defaults_to_medium(client):
     r = client.post("/tasks", json={"title": "A"})
     assert r.status_code == 201
