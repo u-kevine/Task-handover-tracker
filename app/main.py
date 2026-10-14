@@ -3,8 +3,14 @@ from fastapi import FastAPI, HTTPException
 from app.models import Priority, Task, TaskCreate
 from app.store import TaskStore
 
-app = FastAPI(title="Task & Handover Tracker", version="0.1.0")
+app = FastAPI(title="Task & Handover Tracker", version="0.2.0")
 store = TaskStore()
+
+
+@app.get("/health")
+def health() -> dict:
+    """US7: health check for monitoring."""
+    return {"status": "ok", "version": app.version, "task_count": len(store.list())}
 
 
 @app.post("/tasks", response_model=Task, status_code=201)
