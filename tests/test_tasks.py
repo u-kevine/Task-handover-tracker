@@ -44,7 +44,7 @@ def test_list_tasks_returns_all_created(client):
     r = client.get("/tasks")
     assert r.status_code == 200
     assert [t["title"] for t in r.json()] == ["A", "B"]
-    
+
 
 # ---------- US3: complete a task ----------
 def test_complete_task_sets_completed_true(client):
